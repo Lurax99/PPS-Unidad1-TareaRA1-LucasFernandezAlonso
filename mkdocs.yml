@@ -1,0 +1,13 @@
+site_name: PPS Unidad 1 - Tarea RA1
+site_description: Documentación de la Tarea RA1
+site_author: Lucas Fernández Alonso
+
+nav:
+  - Inicio: index.md
+
+theme:
+  name: mkdocs
+  language: es
+
+plugins:
+  - search
