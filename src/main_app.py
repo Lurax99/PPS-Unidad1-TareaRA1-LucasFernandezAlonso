@@ -1,18 +1,29 @@
 # main_app.py
+# Punto de entrada de la aplicación.
+# Este archivo se encarga de:
+#  - Crear el lavadero
+#  - Lanzar simulaciones de lavado
+#  - Probar distintos casos (correctos y de error)
 
-# Importar la clase desde el otro archivo (módulo)
+# Importamos la clase Lavadero desde el módulo lavadero.py
 from lavadero import Lavadero
 
 # MODIFICACIÓN CLAVE AQUÍ: La función ahora acepta 3 argumentos
 def ejecutarSimulacion(lavadero, prelavado, secado_mano, encerado):
     """
-    Simula el proceso de lavado para un vehículo con las opciones dadas.
-    Ahora acepta una instancia de lavadero.
+    Ejecuta una simulación completa de lavado de un vehículo.
 
-    :param lavadero: Instancia de Lavadero.
-    :param prelavado: bool, True si se solicita prelavado a mano.
-    :param secado_mano: bool, True si se solicita secado a mano.
-    :param encerado: bool, True si se solicita encerado.
+    Esta función:
+    1. Configura las opciones del lavado
+    2. Inicia el proceso
+    3. Avanza automáticamente por todas las fases
+    4. Muestra el estado del lavadero en cada paso
+    5. Gestiona los errores esperados del sistema
+
+    :param lavadero: Instancia de la clase Lavadero (se reutiliza para acumular ingresos)
+    :param prelavado: bool → True si se solicita prelavado a mano
+    :param secado_mano: bool → True si se solicita secado a mano
+    :param encerado: bool → True si se solicita encerado
     """
     
     print("--- INICIO: Prueba de Lavado con Opciones Personalizadas ---")
@@ -35,17 +46,22 @@ def ejecutarSimulacion(lavadero, prelavado, secado_mano, encerado):
         while lavadero.ocupado and pasos < 20: 
             # El cobro ahora ocurre en la primera llamada a avanzarFase (transición 0 -> 1)
             lavadero.avanzarFase()
+            
+            # Mostramos la fase actual tras el avance
             print(f"-> Fase actual: ", end="")
             lavadero.imprimir_fase()
             print() 
             pasos += 1
         
+        # 3. Final del lavado
         print("\n----------------------------------------")
         print("Lavado completo. Estado final:")
         lavadero.imprimir_estado()
         print(f"Ingresos acumulados: {lavadero.ingresos:.2f} €")
         print("----------------------------------------")
-        
+
+    # Gestión de errores del sistema
+    
     except ValueError as e: # Captura la excepción de regla de negocio (Requisito 2)
         print(f"ERROR DE ARGUMENTO: {e}")
     except RuntimeError as e: # Captura la excepción de estado (Requisito 3)
