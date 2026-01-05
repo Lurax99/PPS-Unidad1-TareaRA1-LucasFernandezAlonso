@@ -57,7 +57,7 @@ class Lavadero:
         self.__encerado = False
 
         # Funcion destructor
-        self.terminar() 
+        self.terminar()
 
     # PROPIEDADES (SOLO LECTURA)
     # Estas funciones permiten consultar el estado
@@ -144,20 +144,20 @@ class Lavadero:
         Precio base: 5.00€ (Implícito, 5.00€ de base + 1.50€ de prelavado + 1.00€ de secado + 1.20€ de encerado = 8.70€)
         """
         coste_lavado = 5.00     # Precio base
-        
+
         # Si hay prelavado manual, se suma su coste
         if self.__prelavado_a_mano:
-            coste_lavado += 1.50 
-        
+            coste_lavado += 1.50
+       
         # Si hay secado manual, se suma su coste
         if self.__secado_a_mano:
-            coste_lavado += 1.20 
+            coste_lavado += 1.20
 
-        # Si hay encerado, se suma su coste    
+        # Si hay encerado, se suma su coste
         if self.__encerado:
-            coste_lavado += 1.00 
+            coste_lavado += 1.00
 
-        # Se suma el dinero ganado    
+        # Se suma el dinero ganado
         self.__ingresos += coste_lavado
         return coste_lavado
 
@@ -275,25 +275,25 @@ class Lavadero:
         
     # METODO DE PRUEBAS
 
-def ejecutar_y_obtener_fases(self, prelavado, secado, encerado):
-    """
-    Ejecuta un ciclo completo de lavado y devuelve una lista
-    con todas las fases por las que ha pasado el lavadero.
-    Este método se usa para pruebas unitarias.
-    """
+    def ejecutar_y_obtener_fases(self, prelavado, secado, encerado):
+        """
+        Ejecuta un ciclo completo de lavado y devuelve una lista
+        con todas las fases por las que ha pasado el lavadero.
+        Este método se usa para pruebas unitarias.
+        """
 
-    # Se inicia un lavado con las opciones indicadas
-    self._hacer_lavado(prelavado, secado, encerado)
+        # Se inicia un lavado con las opciones indicadas
+        self.hacerLavado(prelavado, secado, encerado)
 
-    # Lista que guardará las fases visitadas
-    fases_visitadas = [self.fase]
+        # Lista que guardará las fases visitadas
+        fases_visitadas = [self.fase]
 
-    # Mientras el lavadero esté ocupado, se avanza de fase
-    while self.ocupado:
-        # Usamos un límite de pasos para evitar bucles infinitos en caso de error
-        if len(fases_visitadas) > 15:
-            raise Exception("Bucle infinito detectado en la simulación de fases.")
-        self.avanzarFase()
-        fases_visitadas.append(self.fase)
+        # Mientras el lavadero esté ocupado, se avanza de fase
+        while self.ocupado:
+            # Usamos un límite de pasos para evitar bucles infinitos en caso de error
+            if len(fases_visitadas) > 15:
+                raise Exception("Bucle infinito detectado en la simulación de fases.")
+            self.avanzarFase()
+            fases_visitadas.append(self.fase)
 
-    return fases_visitadas
+        return fases_visitadas

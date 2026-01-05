@@ -50,7 +50,7 @@ def ejecutarSimulacion(lavadero, prelavado, secado_mano, encerado):
             # Mostramos la fase actual tras el avance
             print(f"-> Fase actual: ", end="")
             lavadero.imprimir_fase()
-            print() 
+            print()
             pasos += 1
         
         # 3. Final del lavado
@@ -96,4 +96,4 @@ if __name__ == "__main__":
     # Precio esperado: 5.00 + 1.50 = 6.50 €
     print("\n=======================================================")
     print("EJEMPLO 4: Prelavado (S), Secado a mano (N), Encerado (N)")
-    ejecutarSimulacion(lavadero_global, prelavado=True, secado_mano=False)
+    ejecutarSimulacion(lavadero_global, prelavado=True, secado_mano=False, encerado=False)
